@@ -73,7 +73,7 @@ cd sanskrit-compiler
 ### 2. Run the compiler
 
 ```
-python3 main.py sample.skt
+python3 sanskrit.py sample.skt
 ```
 
 ---
