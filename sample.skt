@@ -1,0 +1,12 @@
+निर्गम "Enter a score between 0 and 100:";
+प्रवेश score;
+
+यदि score > 90 तदा {
+    निर्गम "Grade: A";
+} अथयदि score > 80 तदा {
+    निर्गम "Grade: B";
+} अथयदि score > 70 तदा {
+    निर्गम "Grade: C";
+} अथ {
+    निर्गम "Grade: F";
+};

@@ -1,0 +1,11 @@
+PRINT None
+LOAD score
+STORE t1
+PRINT None
+LOAD score
+STORE t2
+PRINT None
+LOAD score
+STORE t3
+PRINT None
+PRINT None
