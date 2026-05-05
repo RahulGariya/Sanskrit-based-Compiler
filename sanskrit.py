@@ -13,6 +13,7 @@ if len(sys.argv) < 2:
 
 filename = sys.argv[1]
 
+
 code = open(filename, encoding="utf-8").read()
 
 tokens = tokenize(code)
@@ -23,16 +24,16 @@ tac = []
 for stmt in ast:
     generate_TAC(stmt, tac)
 
-#print("\n--- TAC ---")
-#for line in tac:
-#   print(line)
+
+
 asm_code = generate_target(tac)
 
-with open("output.asm", "w") as f:
+
+with open("output.asm", "w", encoding="utf-8") as f:
     for line in asm_code:
         f.write(line + "\n")
 
 print("Assembly file generated: output.asm")
 
-#print("\n--- EXECUTION ---")
+
 execute(ast)

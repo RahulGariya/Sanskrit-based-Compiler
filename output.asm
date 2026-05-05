@@ -1,8 +1,10 @@
+LOAD 10
+STORE प्रथम_अङ्क
+LOAD 20
+STORE द्वितीय_अङ्क
+LOAD प्रथम_अङ्क
+STORE t1
+LOAD t1
+STORE योग
 PRINT None
-LOAD None
-STORE my_list
-PRINT None
-PRINT None
-PRINT None
-PRINT None
-PRINT None
+PRINT योग

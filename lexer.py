@@ -8,19 +8,23 @@ KEYWORDS = {
     "अथयदि": "ELSEIF",
     "निर्गम": "PRINT",
     "किन्चित्काल": "WHILE",
-    "तथा": "AND",       # Logical AND
-    "अथवा": "OR",        # Logical OR
+    "चक्र": "FOR",
+    "तथा": "AND",      # Logical AND
+    "अथवा": "OR",       # Logical OR
     "न": "NOT",          # Logical NOT
     "अन्यतर": "XOR"      # Logical XOR
 }
 
+
 TOKENS = [
+    ("MULTI_COMMENT", r"/\*[\s\S]*?\*/"),   
+    ("SINGLE_COMMENT", r"//.*"),            
     ("STRING", r'"[^"]*"'),
     ("LBRACK", r"\["),
     ("RBRACK", r"\]"),
     ("COMMA", r","),
     ("NUMBER", r"\d+"),
-    ("ID", r"[a-zA-Z_\u0900-\u097F][a-zA-Z0-9_\u0900-\u097F]*"), # <--- Updated ID regex
+    ("ID", r"[a-zA-Z_\u0900-\u097F][a-zA-Z0-9_\u0900-\u097F]*"),
     ("PLUS", r"\+"),
     ("MINUS", r"-"),
     ("MUL", r"\*"),
@@ -52,6 +56,11 @@ def tokenize(code):
 
             if match:
                 value = match.group(0)
+
+                # Skip comments entirely—do not add them to the tokens list
+                if token_type == "SINGLE_COMMENT" or token_type == "MULTI_COMMENT":
+                    i = match.end()
+                    break
 
                 # Check if the matched string is a reserved keyword
                 if value in KEYWORDS:

@@ -1,0 +1,31 @@
+निर्गम "--- Array Input/Output Program ---";
+
+// 1. Create an empty array with 5 slots
+// (Assuming your current implementation allows pre-allocation or base values)
+अङ्काः = [0, 0, 0, 0, 0];
+
+निर्गम "Please enter 5 numbers:";
+
+// 2. Taking input using a FOR loop (चक्र)
+चक्र (क्रमाङ्क = 0; क्रमाङ्क < 5; क्रमाङ्क = क्रमाङ्क + 1) तदा {
+    निर्गम "Enter value for index:";
+    निर्गम क्रमाङ्क;
+    
+    // Using the INPUT keyword
+    प्रवेश अङ्काः[क्रमाङ्क];
+}
+
+निर्गम "---------------------------";
+निर्गम "Displaying array using WHILE:";
+
+// 3. Outputting values using a WHILE loop (किन्चित्काल)
+i = 0;
+किन्चित्काल i < 5 तदा {
+    निर्गम "Value at index:";
+    निर्गम i;
+    निर्गम अङ्काः[i];
+    
+    i = i + 1;
+}
+
+निर्गम "--- कार्यक्रमः समाप्तः (Program Ended) ---";

@@ -45,8 +45,8 @@ class UnaryOp:
         self.expr = expr   # E.g., the variable or condition being inverted
 
 class Input:
-    def __init__(self, name):
-        self.name = name        
+    def __init__(self, target):
+        self.target = target        
 
 class ArrayDecl:
     def __init__(self, elements):
@@ -54,11 +54,18 @@ class ArrayDecl:
 
 class ArrayAccess:
     def __init__(self, name, index):
-        self.name = name          # Variable name (e.g., 'arr')
-        self.index = index        # Index expression (e.g., 0)
+        self.name = name          
+        self.index = index        
 
 class ArrayAssign:
     def __init__(self, name, index, value):
-        self.name = name          # Variable name
-        self.index = index        # Index expression
-        self.value = value        # What to save there        
+        self.name = name         
+        self.index = index       
+        self.value = value             
+
+class For:
+    def __init__(self, init, condition, update, body):
+        self.init = init            
+        self.condition = condition  
+        self.update = update        
+        self.body = body            

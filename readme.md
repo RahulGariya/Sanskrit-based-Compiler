@@ -73,7 +73,7 @@ cd sanskrit-compiler
 ### 2. Run the compiler
 
 ```
-python3 main.py sample.skt
+python3 sanskrit.py sample.skt
 ```
 
 ---
@@ -148,9 +148,12 @@ PRINT t1
 | ---------------- | ------- |
 | यदि              | if      |
 | तदा              | then    |
-| अथ               | else    |
-| किन्चित्काल      | while   |
-| निर्गम           | print   |
+| अथ              | else    |
+| किन्चित्काल         | while   |
+| निर्गम             | print   |
+| प्रवेश             | input   |
+|अथयदि            | else if   |
+
 
 ---
 

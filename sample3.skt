@@ -1,11 +1,24 @@
-निर्गम "Creating an array...";
-my_list = [10, 20, 30];
+/* 
+   =====================================
+   सम्पूर्ण परीक्षणम् (Complete Test File)
+   Author: Rahul
+   Date: 2026
+   =====================================
+*/
 
-निर्गम "The second item is:";
-निर्गम my_list[1];
+निर्गम "Starting comment test...";
 
-निर्गम "Changing the first item to 99...";
-my_list[0] = 99;
+// Here we define the starting index
+क्रमाङ्क = 0; 
 
-निर्गम "The new first item is:";
-निर्गम my_list[0];
+// Run a quick loop just to prove the code still executes perfectly
+किन्चित्काल क्रमाङ्क < 2 तदा {
+    निर्गम क्रमाङ्क;
+    क्रमाङ्क = क्रमाङ्क + 1; // Increment the counter
+};
+
+/* 
+   The loop is finished.
+   Now we will print the final output.
+*/
+निर्गम "Test completed successfully!";
