@@ -1,11 +1,8 @@
 PRINT None
-LOAD score
-STORE t1
+LOAD None
+STORE my_list
 PRINT None
-LOAD score
-STORE t2
 PRINT None
-LOAD score
-STORE t3
+PRINT None
 PRINT None
 PRINT None

@@ -37,6 +37,17 @@ def execute(ast):
             if node.op == "AND": return bool(l) and bool(r)
             if node.op == "OR":  return bool(l) or bool(r)
             if node.op == "XOR": return bool(l) ^ bool(r)
+            # --- NEW: Array Evaluation ---
+        if isinstance(node, ArrayDecl):
+            # Evaluate all items inside the brackets and return a Python list
+            return [eval_expr(e) for e in node.elements]
+            
+        if isinstance(node, ArrayAccess):
+            # Get the array from memory and pull the correct index
+            arr = memory.get(node.name, [])
+            idx = eval_expr(node.index)
+            return arr[idx]
+
 
     def run_block(block):
         for stmt in block:
@@ -84,7 +95,12 @@ def execute(ast):
 
         elif isinstance(stmt, While):
             while eval_expr(stmt.cond): run_block(stmt.body)
-
+        
+        # --- NEW: Array Assignment ---
+        elif isinstance(stmt, ArrayAssign):
+            idx = eval_expr(stmt.index)
+            val = eval_expr(stmt.value)
+            memory[stmt.name][idx] = val
 
     # Start execution by running every statement in the main AST list
     for stmt in ast:

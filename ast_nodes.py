@@ -47,3 +47,18 @@ class UnaryOp:
 class Input:
     def __init__(self, name):
         self.name = name        
+
+class ArrayDecl:
+    def __init__(self, elements):
+        self.elements = elements  # A list of expression nodes
+
+class ArrayAccess:
+    def __init__(self, name, index):
+        self.name = name          # Variable name (e.g., 'arr')
+        self.index = index        # Index expression (e.g., 0)
+
+class ArrayAssign:
+    def __init__(self, name, index, value):
+        self.name = name          # Variable name
+        self.index = index        # Index expression
+        self.value = value        # What to save there        

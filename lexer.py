@@ -16,8 +16,11 @@ KEYWORDS = {
 
 TOKENS = [
     ("STRING", r'"[^"]*"'),
+    ("LBRACK", r"\["),
+    ("RBRACK", r"\]"),
+    ("COMMA", r","),
     ("NUMBER", r"\d+"),
-    ("ID", r"[a-zA-Z\u0900-\u097F]+"), 
+    ("ID", r"[a-zA-Z_\u0900-\u097F][a-zA-Z0-9_\u0900-\u097F]*"), # <--- Updated ID regex
     ("PLUS", r"\+"),
     ("MINUS", r"-"),
     ("MUL", r"\*"),

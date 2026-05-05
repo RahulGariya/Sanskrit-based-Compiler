@@ -57,7 +57,6 @@ class Parser:
         self.eat("THEN")
         body = self.block()
 
-        # --- NEW: Parse multiple ELSEIF blocks ---
         elifs = []
         while self.current() and self.current()[0] == "ELSEIF":
             self.eat("ELSEIF")
@@ -72,10 +71,9 @@ class Parser:
             self.eat("ELSE")
             else_body = self.block()
 
-        self.eat("SEMI") # The semicolon caps off the entire chain
+        self.eat("SEMI") 
         return If(condition, body, elifs, else_body)
 
-        
     def while_stmt(self):
         self.eat("WHILE")
         cond = self.expr()
@@ -86,6 +84,16 @@ class Parser:
 
     def assignment(self):
         name = self.eat("ID")[1]
+        
+        if self.current() and self.current()[0] == "LBRACK":
+            self.eat("LBRACK")
+            index = self.expr()
+            self.eat("RBRACK")
+            self.eat("EQ")
+            val = self.expr()
+            self.eat("SEMI")
+            return ArrayAssign(name, index, val)
+            
         self.eat("EQ")
         val = self.expr()
         self.eat("SEMI")
@@ -155,16 +163,35 @@ class Parser:
     def factor(self):
         tok = self.current()
 
-        if tok[0] == "NUMBER":
-            return Num(self.eat("NUMBER")[1])
-        if tok[0] == "STRING":
-            return Str(self.eat("STRING")[1].strip('"'))
+        if tok[0] == "NUMBER": return Num(self.eat("NUMBER")[1])
+        if tok[0] == "STRING": return Str(self.eat("STRING")[1].strip('"'))
+        
+        # --- ARRAY DECLARATION FIX ---
+        if tok[0] == "LBRACK":
+            self.eat("LBRACK")
+            elements = []
+            if self.current() and self.current()[0] != "RBRACK":
+                elements.append(self.expr())
+                while self.current() and self.current()[0] == "COMMA":
+                    self.eat("COMMA")
+                    elements.append(self.expr())
+            self.eat("RBRACK")
+            return ArrayDecl(elements)
+
         if tok[0] == "ID":
-            return Var(self.eat("ID")[1])
+            name = self.eat("ID")[1]
+            
+            if self.current() and self.current()[0] == "LBRACK":
+                self.eat("LBRACK")
+                index = self.expr()
+                self.eat("RBRACK")
+                return ArrayAccess(name, index)
+            return Var(name) 
+
         if tok[0] == "LPAREN":
             self.eat("LPAREN")
             e = self.expr()
             self.eat("RPAREN")
             return e
 
-        raise Exception("Invalid expression")
+        raise Exception(f"Invalid expression: {tok}")

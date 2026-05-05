@@ -1,9 +1,11 @@
-x = 5;
+निर्गम "Creating an array...";
+my_list = [10, 20, 30];
 
-किन्चित्काल x > 0 तदा
-{
-    निर्गम x;
-    x = x - 1;
-};
+निर्गम "The second item is:";
+निर्गम my_list[1];
 
-निर्गम "done";
+निर्गम "Changing the first item to 99...";
+my_list[0] = 99;
+
+निर्गम "The new first item is:";
+निर्गम my_list[0];
